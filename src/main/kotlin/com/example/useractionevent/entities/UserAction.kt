@@ -1,4 +1,4 @@
-package com.example.useractionevent
+package com.example.useractionevent.entities
 
 import com.google.cloud.Timestamp
 import org.springframework.cloud.gcp.data.spanner.core.mapping.Column

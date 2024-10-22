@@ -1,6 +1,10 @@
-package com.example.useractionevent
+package com.example.useractionevent.services.impl
 
 import com.example.useractionevent.configs.SpannerProperties
+import com.example.useractionevent.entities.UserAction
+import com.example.useractionevent.models.ActionDetails
+import com.example.useractionevent.repositories.UserActionRepository
+import com.example.useractionevent.services.UserActionService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
@@ -8,15 +12,15 @@ import org.springframework.stereotype.Service
 import kotlin.coroutines.CoroutineContext
 
 @Service
-class UserActionService(
+class UserActionServiceImpl(
     private val repository: UserActionRepository,
     private val properties: SpannerProperties,
-) {
+) : UserActionService {
 
     private val coroutineContext: CoroutineContext = Dispatchers.Default
-    private val logger = LoggerFactory.getLogger(UserActionService::class.java)
+    private val logger = LoggerFactory.getLogger(UserActionServiceImpl::class.java)
 
-    suspend fun processAction(actionDetails: ActionDetails) = withContext(coroutineContext) {
+    override suspend fun processAction(actionDetails: ActionDetails) = withContext(coroutineContext) {
         if (properties.featureFlag.enableSpannerIntegration) {
             val action = buildUserAction(actionDetails)
             try {
@@ -34,7 +38,7 @@ class UserActionService(
         }
     }
 
-    suspend fun getAction(actionId: String): UserAction? = withContext(coroutineContext) {
+    override suspend fun getAction(actionId: String): UserAction? = withContext(coroutineContext) {
         if (properties.featureFlag.enableSpannerIntegration) {
             repository.findById(actionId).orElse(null)
         } else {

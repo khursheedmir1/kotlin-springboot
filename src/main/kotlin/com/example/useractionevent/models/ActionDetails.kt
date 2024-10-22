@@ -1,4 +1,4 @@
-package com.example.useractionevent
+package com.example.useractionevent.models
 
 import com.google.cloud.Timestamp
 
