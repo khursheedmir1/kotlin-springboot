@@ -1,0 +1,6 @@
+spanner:
+  project-id: ""
+  instance-id: ""
+  database-id: ""
+  feature-flag:
+    enable-spanner-integration: false
