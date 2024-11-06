@@ -1,0 +1,6 @@
+spanner:
+  project-id: "dev-project-id"
+  instance-id: "dev-instance-id"
+  database-id: "dev-database-id"
+  feature-flag:
+    enable-spanner-integration: true
