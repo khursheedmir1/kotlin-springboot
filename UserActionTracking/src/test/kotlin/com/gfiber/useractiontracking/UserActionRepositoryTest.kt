@@ -1,7 +1,7 @@
 package com.gfiber.useractiontracking
 
-import com.gfiber.useractiontracking.entities.UserAction
-import com.gfiber.useractiontracking.repositories.UserActionRepository
+import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.repository.UserActionRepository
 import com.google.cloud.Timestamp
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

@@ -1,6 +1,6 @@
 package com.gfiber.useractiontracking
 
-import com.gfiber.useractiontracking.configs.SpannerConfig
+import com.gfiber.useractiontracking.config.SpannerConfig
 import com.google.cloud.spanner.Spanner
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test

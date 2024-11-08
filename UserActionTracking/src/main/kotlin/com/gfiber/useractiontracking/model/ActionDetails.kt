@@ -1,4 +1,4 @@
-package com.gfiber.useractiontracking.models
+package com.gfiber.useractiontracking.model
 
 import com.google.cloud.Timestamp
 

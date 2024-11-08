@@ -1,10 +1,10 @@
 package com.gfiber.useractiontracking
 
-import com.gfiber.useractiontracking.configs.SpannerProperties
-import com.gfiber.useractiontracking.entities.UserAction
-import com.gfiber.useractiontracking.models.ActionDetails
-import com.gfiber.useractiontracking.repositories.UserActionRepository
-import com.gfiber.useractiontracking.services.impl.UserActionServiceImpl
+import com.gfiber.useractiontracking.config.SpannerProperties
+import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.model.ActionDetails
+import com.gfiber.useractiontracking.repository.UserActionRepository
+import com.gfiber.useractiontracking.service.impl.UserActionServiceImpl
 import com.google.cloud.Timestamp
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package com.gfiber.useractiontracking.configs
+package com.gfiber.useractiontracking.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties

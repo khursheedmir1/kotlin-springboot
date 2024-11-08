@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
 }
 
-group = "com.example"
+group = "com.gfiber"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -41,11 +41,6 @@ kotlin {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-
-//tasks.bootRun {
-//    sourceResources(sourceSets.main.get())
-//    mainClass.set("com.example.useractionevent.UserActionEventApplicationKt")
-//}
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
