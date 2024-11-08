@@ -2,6 +2,9 @@ package com.example.UserAction
 
 import com.google.cloud.Timestamp
 
+/**
+ * Represents details of a user action in the system.
+ */
 data class ActionDetails(
     val userId: String?,
     val sessionId: String?,
@@ -15,39 +18,43 @@ data class ActionDetails(
     val errorCode: String?,
     val errorMessage: String
 ) {
-    // Ensure actionType is not blank
-    init {
-        require(actionType.isNotBlank()) { "actionType must not be blank" }
-    }
-
-    // Companion object for creating instances with default values
+    // Companion object for constants and utility functions
     companion object {
-        /**
-         * Creates an instance of ActionDetails with minimal required information.
-         *
-         * @param actionType Type of action performed
-         * @param timestamp Time of the action
-         * @param errorMessage Error message (default is empty string)
-         * @return ActionDetails instance
-         */
-        fun createMinimal(
+        // Define constants for action types
+        const val ACTION_TYPE_LOGIN = "LOGIN"
+        const val ACTION_TYPE_LOGOUT = "LOGOUT"
+        const val ACTION_TYPE_PURCHASE = "PURCHASE"
+        // Add more action types as needed
+
+        // Utility function to create an instance with current timestamp
+        fun createWithCurrentTimestamp(
+            userId: String?,
+            sessionId: String?,
+            traceId: String?,
+            globalAddressId: String?,
+            ipAddress: String?,
             actionType: String,
-            timestamp: Timestamp = Timestamp.now(),
-            errorMessage: String = ""
+            currentStep: String?,
+            selectionData: Map<String, Any>?,
+            errorCode: String?,
+            errorMessage: String
         ): ActionDetails {
             return ActionDetails(
-                userId = null,
-                sessionId = null,
-                traceId = null,
-                globalAddressId = null,
-                ipAddress = null,
-                timestamp = timestamp,
-                actionType = actionType,
-                currentStep = null,
-                selectionData = null,
-                errorCode = null,
-                errorMessage = errorMessage
+                userId, sessionId, traceId, globalAddressId, ipAddress,
+                Timestamp.now(), actionType, currentStep, selectionData,
+                errorCode, errorMessage
             )
         }
+    }
+
+    // Validation function
+    fun isValid(): Boolean {
+        return actionType.isNotBlank() && timestamp != Timestamp.MIN_VALUE
+    }
+
+    // ToString override for better logging
+    override fun toString(): String {
+        return "ActionDetails(userId=$userId, sessionId=$sessionId, " +
+               "actionType=$actionType, timestamp=$timestamp)"
     }
 }
