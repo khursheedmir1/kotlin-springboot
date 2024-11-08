@@ -7,12 +7,18 @@ import com.gfiber.useractiontracking.repository.UserActionRepository
 import com.gfiber.useractiontracking.service.impl.UserActionServiceImpl
 import com.google.cloud.Timestamp
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.any
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.never
 import org.mockito.junit.jupiter.MockitoExtension
 import java.util.Optional
 
@@ -31,11 +37,11 @@ class UserActionServiceTest {
     private lateinit var testUserAction: UserAction
 
     @BeforeEach
-    fun setup() {
+    fun setup(): Unit {
         userActionService = UserActionServiceImpl(repository, properties)
-        
+
         val timestamp = Timestamp.now()
-        
+
         testActionDetails = ActionDetails(
             userId = "test-user-id",
             sessionId = "test-session-id",
@@ -68,7 +74,7 @@ class UserActionServiceTest {
 
     @Test
     @DisplayName("Should save user action when feature flag is enabled")
-    fun `should save user action when feature flag is enabled`() = runBlocking {
+    fun `should save user action when feature flag is enabled`(): Unit = runBlocking {
         // Given
         val featureFlag = SpannerProperties.FeatureFlag(enableSpannerIntegration = true)
         `when`(properties.featureFlag).thenReturn(featureFlag)
@@ -83,7 +89,7 @@ class UserActionServiceTest {
 
     @Test
     @DisplayName("Should not save user action when feature flag is disabled")
-    fun `should not save user action when feature flag is disabled`() = runBlocking {
+    fun `should not save user action when feature flag is disabled`(): Unit = runBlocking {
         // Given
         val featureFlag = SpannerProperties.FeatureFlag(enableSpannerIntegration = false)
         `when`(properties.featureFlag).thenReturn(featureFlag)
@@ -97,7 +103,7 @@ class UserActionServiceTest {
 
     @Test
     @DisplayName("Should retrieve user action when it exists")
-    fun `should retrieve user action when it exists`() = runBlocking {
+    fun `should retrieve user action when it exists`(): Unit = runBlocking {
         // Given
         val featureFlag = SpannerProperties.FeatureFlag(enableSpannerIntegration = true)
         `when`(properties.featureFlag).thenReturn(featureFlag)

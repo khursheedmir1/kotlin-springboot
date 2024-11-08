@@ -5,13 +5,11 @@ import com.google.cloud.spanner.Spanner
 import com.google.cloud.spanner.SpannerOptions
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 
 /**
  * Configuration class for Google Cloud Spanner.
  * This class sets up the necessary beans for interacting with Spanner.
  */
-@Configuration
 @EnableConfigurationProperties(SpannerProperties::class)
 class SpannerConfig(private val properties: SpannerProperties) {
 

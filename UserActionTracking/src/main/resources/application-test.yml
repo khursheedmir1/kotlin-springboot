@@ -1,6 +1,6 @@
 spanner:
-  project-id: "test-project-id"
-  instance-id: "test-instance-id"
-  database-id: "test-database-id"
+  project-id: test-project-id
+  instance-id: test-instance-id
+  database-id: test-database-id
   feature-flag:
     enable-spanner-integration: false

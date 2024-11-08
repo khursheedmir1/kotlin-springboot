@@ -8,6 +8,7 @@ import com.gfiber.useractiontracking.service.UserActionService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.UUID
 import kotlin.coroutines.CoroutineContext
@@ -18,8 +19,8 @@ import kotlin.coroutines.CoroutineContext
  */
 @Service
 class UserActionServiceImpl(
-    private val repository: UserActionRepository,
-    private val properties: SpannerProperties
+    @Autowired private val repository: UserActionRepository,
+    @Autowired private val properties: SpannerProperties
 ) : UserActionService {
 
     private val coroutineContext: CoroutineContext = Dispatchers.IO
@@ -39,7 +40,10 @@ class UserActionServiceImpl(
                 repository.save(action)
                 logger.info("Successfully saved action: actionId=${action.actionId}, userId=${action.userId}, traceId=${action.traceId}")
             } catch (e: Exception) {
-                logger.error("Failed to save action: actionId=${action.actionId}, userId=${action.userId}, traceId=${action.traceId}", e)
+                logger.error(
+                    "Failed to save action: actionId=${action.actionId}, userId=${action.userId}, traceId=${action.traceId}",
+                    e
+                )
                 throw e
             }
         } else {

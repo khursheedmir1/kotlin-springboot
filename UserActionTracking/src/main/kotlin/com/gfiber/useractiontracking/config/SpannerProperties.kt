@@ -1,6 +1,8 @@
 package com.gfiber.useractiontracking.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.stereotype.Component
 import org.springframework.validation.annotation.Validated
 import javax.validation.constraints.NotBlank
 
@@ -8,7 +10,8 @@ import javax.validation.constraints.NotBlank
  * Configuration properties for Google Cloud Spanner.
  * This class is used to bind application properties with the prefix "spanner".
  */
- 
+@Component
+@EnableConfigurationProperties
 @ConfigurationProperties(prefix = "spanner")
 @Validated
 data class SpannerProperties(
