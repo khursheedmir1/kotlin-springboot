@@ -1,20 +1,47 @@
 package com.gfiber.useractiontracking.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.EnableConfigurationProperties
-import org.springframework.stereotype.Component
+import org.springframework.validation.annotation.Validated
+import javax.validation.constraints.NotBlank
 
-@Component
-@EnableConfigurationProperties
+/**
+ * Configuration properties for Google Cloud Spanner.
+ * This class is used to bind application properties with the prefix "spanner".
+ */
+ 
 @ConfigurationProperties(prefix = "spanner")
+@Validated
 data class SpannerProperties(
+    /**
+     * The Google Cloud project ID.
+     */
+    @field:NotBlank(message = "Project ID must not be blank")
     val projectId: String = "",
+
+    /**
+     * The Spanner instance ID.
+     */
+    @field:NotBlank(message = "Instance ID must not be blank")
     val instanceId: String = "",
+
+    /**
+     * The Spanner database ID.
+     */
+    @field:NotBlank(message = "Database ID must not be blank")
     val databaseId: String = "",
-    val featureFlag: FeatureFlag = FeatureFlag(),
+
+    /**
+     * Feature flag configuration for Spanner.
+     */
+    val featureFlag: FeatureFlag = FeatureFlag()
 ) {
+    /**
+     * Nested class for feature flag configuration.
+     */
     data class FeatureFlag(
-        var enableSpannerIntegration: Boolean = false,
+        /**
+         * Flag to enable or disable Spanner integration.
+         */
+        val enableSpannerIntegration: Boolean = false
     )
 }
-

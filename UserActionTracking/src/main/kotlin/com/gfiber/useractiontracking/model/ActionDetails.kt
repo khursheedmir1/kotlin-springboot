@@ -2,6 +2,11 @@ package com.gfiber.useractiontracking.model
 
 import com.google.cloud.Timestamp
 
+/**
+ * Represents the details of a user action in the system.
+ * This data class is used to encapsulate action-related information.
+ */
+ 
 data class ActionDetails(
     val userId: String?,
     val sessionId: String?,
@@ -12,7 +17,6 @@ data class ActionDetails(
     val actionType: String,
     val currentStep: String?,
     val selectionData: Map<String, Any>?,
-//    val userAgent: String?,
     val errorCode: String?,
     val errorMessage: String?
 )

@@ -3,56 +3,86 @@ package com.gfiber.useractiontracking
 import com.gfiber.useractiontracking.entity.UserAction
 import com.gfiber.useractiontracking.repository.UserActionRepository
 import com.google.cloud.Timestamp
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.mock
-import org.springframework.test.context.ContextConfiguration
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.junit.jupiter.MockitoExtension
 import java.util.Optional
 
-@ContextConfiguration(classes = [UserActionRepository::class])
+/**
+ * Unit tests for UserActionRepository.
+ * These tests verify the behavior of the UserActionRepository methods.
+ */
+@ExtendWith(MockitoExtension::class)
+@DisplayName("UserActionRepository Tests")
 class UserActionRepositoryTest {
 
-    private val userActionRepository: UserActionRepository = mock(UserActionRepository::class.java)
+    @Mock
+    private lateinit var userActionRepository: UserActionRepository
+
+    private lateinit var testUserAction: UserAction
+
+    @BeforeEach
+    fun setup() {
+        testUserAction = UserAction(
+            actionId = "test-action-id",
+            userId = "test-user-id",
+            sessionId = "test-session-id",
+            traceId = "test-trace-id",
+            globalAddressId = "test-global-address-id",
+            ipAddress = "127.0.0.1",
+            timestamp = Timestamp.now(),
+            actionType = "TEST_ACTION",
+            currentStep = "TEST_STEP",
+            selectionData = mapOf("key" to "value"),
+            errorCode = "",
+            errorMessage = ""
+        )
+    }
 
     @Test
+    @DisplayName("Should save user action to the database")
     fun `should save user action to the database`() {
         // Given
-        val userAction = UserAction(
-            actionId = "generated-unique-action-id",
-            userId = "123",
-            sessionId = "",
-            traceId = "",
-            globalAddressId = "",
-            ipAddress = "",
-            timestamp = Timestamp.now(),
-            actionType = "",
-            currentStep = "",
-            selectionData = mapOf(),
-            errorCode = "",
-            errorMessage = "",
-        )
+        `when`(userActionRepository.save(testUserAction)).thenReturn(testUserAction)
 
         // When
-        userActionRepository.save(userAction)
-//        `when`(userActionRepository.save(userAction)).thenReturn(userAction)
-
-        println("=-=-=>>>  ${userActionRepository.save(userAction)}")
+        val savedAction = userActionRepository.save(testUserAction)
 
         // Then
-        val retrievedAction = userActionRepository.findById("generated-unique-action-id").get()
-        assertEquals(userAction, retrievedAction)
+        assertEquals(testUserAction, savedAction, "Saved action should match the original action")
+        verify(userActionRepository, times(1)).save(testUserAction)
     }
 
     @Test
-    fun `should return null for nonexistent action ID`() {
+    @DisplayName("Should retrieve user action by ID")
+    fun `should retrieve user action by ID`() {
         // Given
-        val actionId = "nonexistent-action"
+        `when`(userActionRepository.findById(testUserAction.actionId)).thenReturn(Optional.of(testUserAction))
 
         // When
-        val result = userActionRepository.findById(actionId)
+        val retrievedAction = userActionRepository.findById(testUserAction.actionId)
 
         // Then
-        assertEquals(Optional.empty<UserAction>(), result)
+        assertTrue(retrievedAction.isPresent, "Retrieved action should be present")
+        assertEquals(testUserAction, retrievedAction.get(), "Retrieved action should match the original action")
     }
 
+    @Test
+    @DisplayName("Should return empty Optional for nonexistent action ID")
+    fun `should return empty Optional for nonexistent action ID`() {
+        // Given
+        val nonexistentId = "nonexistent-action-id"
+        `when`(userActionRepository.findById(nonexistentId)).thenReturn(Optional.empty())
+
+        // When
+        val result = userActionRepository.findById(nonexistentId)
+
+        // Then
+        assertTrue(result.isEmpty, "Result should be an empty Optional")
+    }
 }
