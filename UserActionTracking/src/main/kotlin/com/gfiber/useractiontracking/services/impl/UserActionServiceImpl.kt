@@ -1,10 +1,10 @@
-package com.example.useractiontracking.services.impl
+package com.gfiber.useractiontracking.services.impl
 
-import com.example.useractiontracking.configs.SpannerProperties
-import com.example.useractiontracking.entities.UserAction
-import com.example.useractiontracking.models.ActionDetails
-import com.example.useractiontracking.repo.UserActionRepository
-import com.example.useractiontracking.services.UserActionService
+import com.gfiber.useractiontracking.configs.SpannerProperties
+import com.gfiber.useractiontracking.entities.UserAction
+import com.gfiber.useractiontracking.models.ActionDetails
+import com.gfiber.useractiontracking.repositories.UserActionRepository
+import com.gfiber.useractiontracking.services.UserActionService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory

@@ -1,6 +1,6 @@
-package com.example.useractiontracking
+package com.gfiber.useractiontracking
 
-import com.example.useractiontracking.configs.SpannerProperties
+import com.gfiber.useractiontracking.configs.SpannerProperties
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 

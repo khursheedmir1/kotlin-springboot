@@ -1,4 +1,4 @@
-package com.example.useractiontracking.entities
+package com.gfiber.useractiontracking.entities
 
 import com.google.cloud.Timestamp
 import org.springframework.cloud.gcp.data.spanner.core.mapping.Column

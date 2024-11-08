@@ -1,20 +1,24 @@
-package com.example.useractiontracking
+package com.gfiber.useractiontracking
 
-import com.example.useractiontracking.configs.SpannerProperties
-import com.example.useractiontracking.entities.UserAction
-import com.example.useractiontracking.models.ActionDetails
-import com.example.useractiontracking.repo.UserActionRepository
-import com.example.useractiontracking.services.impl.UserActionServiceImpl
+import com.gfiber.useractiontracking.configs.SpannerProperties
+import com.gfiber.useractiontracking.entities.UserAction
+import com.gfiber.useractiontracking.models.ActionDetails
+import com.gfiber.useractiontracking.repositories.UserActionRepository
+import com.gfiber.useractiontracking.services.impl.UserActionServiceImpl
 import com.google.cloud.Timestamp
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.never
+import org.mockito.Mockito.any
 
 class UserActionServiceTest {
+
     private val repository: UserActionRepository = mock(UserActionRepository::class.java)
     private val properties: SpannerProperties = mock(SpannerProperties::class.java)
     private val userActionService = UserActionServiceImpl(repository, properties)
-
 
     @Test
     fun `should save user action when feature flag is enabled`(): Unit = runBlocking {

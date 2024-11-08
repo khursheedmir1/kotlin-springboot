@@ -1,4 +1,4 @@
-package com.example.useractiontracking.configs
+package com.gfiber.useractiontracking.configs
 
 import com.google.cloud.spanner.DatabaseId
 import com.google.cloud.spanner.Spanner

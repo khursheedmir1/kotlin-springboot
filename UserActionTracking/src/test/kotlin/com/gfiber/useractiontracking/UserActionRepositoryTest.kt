@@ -1,13 +1,13 @@
-package com.example.useractiontracking
+package com.gfiber.useractiontracking
 
-import com.example.useractiontracking.entities.UserAction
-import com.example.useractiontracking.repo.UserActionRepository
+import com.gfiber.useractiontracking.entities.UserAction
+import com.gfiber.useractiontracking.repositories.UserActionRepository
 import com.google.cloud.Timestamp
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.springframework.test.context.ContextConfiguration
-import java.util.*
+import java.util.Optional
 
 @ContextConfiguration(classes = [UserActionRepository::class])
 class UserActionRepositoryTest {
@@ -18,8 +18,7 @@ class UserActionRepositoryTest {
     fun `should save user action to the database`() {
         // Given
         val userAction = UserAction(
-//            actionId = "generated-unique-action-id",
-            actionId = "action-1",
+            actionId = "generated-unique-action-id",
             userId = "123",
             sessionId = "",
             traceId = "",
