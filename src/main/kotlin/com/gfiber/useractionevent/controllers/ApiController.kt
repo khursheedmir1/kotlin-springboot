@@ -1,6 +1,6 @@
-package com.example.useractionevent.controllers
+package com.gfiber.useractionevent.controllers
 
-import com.example.useractiontracking.services.UserActionService
+import com.gfiber.useractiontracking.services.UserActionService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
