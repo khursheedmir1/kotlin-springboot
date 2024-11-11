@@ -1,11 +1,14 @@
 package com.gfiber.useractionevent
 
+import com.google.cloud.spring.data.spanner.repository.config.EnableSpannerRepositories
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
-@SpringBootApplication
 @ComponentScan(basePackages = ["com.gfiber.useractiontracking"])
+@SpringBootApplication(scanBasePackages = ["com.gfiber.useractiontracking"], exclude = [DataSourceAutoConfiguration::class])
+@EnableSpannerRepositories("com.gfiber.useractiontracking")
 class UserActionEventApplication
 
 fun main(args: Array<String>) {

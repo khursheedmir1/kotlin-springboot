@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: dev
+
+  cloud:
+    gcp:
+      spanner:
+        credentials:
+          location: file:C:\Users\Administrator\Desktop\bustling-kayak-438602-m8-27ee465cb15e.json

@@ -1,6 +1,6 @@
 package com.gfiber.useractiontracking.repository
 
-import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.entity.UserActions
 import com.google.cloud.spring.data.spanner.repository.SpannerRepository
 import org.springframework.stereotype.Repository
 
@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository
  * This interface extends SpannerRepository to provide CRUD operations
  * for UserAction entities in Google Cloud Spanner.
  */
- 
+
+
 @Repository
-interface UserActionRepository : SpannerRepository<UserAction, String> {
-  
+interface UserActionRepository : SpannerRepository<UserActions, String> {
+
 }
 

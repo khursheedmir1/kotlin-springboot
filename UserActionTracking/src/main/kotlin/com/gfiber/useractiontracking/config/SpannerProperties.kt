@@ -19,24 +19,24 @@ data class SpannerProperties(
      * The Google Cloud project ID.
      */
     @field:NotBlank(message = "Project ID must not be blank")
-    val projectId: String = "",
+    var projectId: String = "",
 
     /**
      * The Spanner instance ID.
      */
     @field:NotBlank(message = "Instance ID must not be blank")
-    val instanceId: String = "",
+    var instanceId: String = "",
 
     /**
      * The Spanner database ID.
      */
     @field:NotBlank(message = "Database ID must not be blank")
-    val databaseId: String = "",
+    var databaseId: String = "",
 
     /**
      * Feature flag configuration for Spanner.
      */
-    val featureFlag: FeatureFlag = FeatureFlag()
+    var featureFlag: FeatureFlag = FeatureFlag()
 ) {
     /**
      * Nested class for feature flag configuration.
@@ -45,6 +45,6 @@ data class SpannerProperties(
         /**
          * Flag to enable or disable Spanner integration.
          */
-        val enableSpannerIntegration: Boolean = false
+        var enableSpannerIntegration: Boolean = false
     )
 }

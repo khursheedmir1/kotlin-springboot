@@ -1,11 +1,15 @@
 package com.gfiber.useractiontracking.service.impl
 
 import com.gfiber.useractiontracking.config.SpannerProperties
-import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.entity.UserActions
 import com.gfiber.useractiontracking.model.ActionDetails
 import com.gfiber.useractiontracking.repository.UserActionRepository
 import com.gfiber.useractiontracking.service.UserActionService
+import com.gfiber.useractiontracking.util.toSelectionData
+import com.google.cloud.Timestamp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,6 +41,7 @@ class UserActionServiceImpl(
         if (properties.featureFlag.enableSpannerIntegration) {
             val action = buildUserAction(actionDetails)
             try {
+                println("tableName:::${action}")
                 repository.save(action)
                 logger.info("Successfully saved action: actionId=${action.actionId}, userId=${action.userId}, traceId=${action.traceId}")
             } catch (e: Exception) {
@@ -57,7 +62,7 @@ class UserActionServiceImpl(
      * @param actionId The ID of the action to retrieve.
      * @return The UserAction if found, null otherwise.
      */
-    override suspend fun getAction(actionId: String): UserAction? = withContext(coroutineContext) {
+    override suspend fun getAction(actionId: String): UserActions? = withContext(coroutineContext) {
         if (properties.featureFlag.enableSpannerIntegration) {
             try {
                 repository.findById(actionId).orElse(null)
@@ -71,14 +76,34 @@ class UserActionServiceImpl(
         }
     }
 
+    init {
+        GlobalScope.launch(Dispatchers.IO) {
+            val actionDetails = ActionDetails(
+                userId = "test-user-id",
+                sessionId = "test-session-id",
+                traceId = "test-trace-2",
+                globalAddressId = "test-global-address-id",
+                ipAddress = "127.0.0.1",
+                timestamp = Timestamp.now(),
+                actionType = "TEST_ACTION",
+                currentStep = "TEST_STEP",
+                selectionData = mapOf("key1" to "value1"),
+                errorCode = "",
+                errorMessage = ""
+            )
+            println("init:::actionDetails = ${actionDetails}")
+//            processAction(actionDetails)
+        }
+    }
+
     /**
      * Builds a UserAction entity from ActionDetails.
      *
      * @param actionDetails The details to build the UserAction from.
      * @return A new UserAction entity.
      */
-    private fun buildUserAction(actionDetails: ActionDetails): UserAction {
-        return UserAction(
+    private fun buildUserAction(actionDetails: ActionDetails): UserActions {
+        return UserActions(
             actionId = generateActionId(),
             userId = actionDetails.userId,
             sessionId = actionDetails.sessionId,
@@ -88,7 +113,7 @@ class UserActionServiceImpl(
             timestamp = actionDetails.timestamp,
             actionType = actionDetails.actionType,
             currentStep = actionDetails.currentStep,
-            selectionData = actionDetails.selectionData,
+            selectionData = actionDetails.selectionData.toSelectionData(),
             errorCode = actionDetails.errorCode,
             errorMessage = actionDetails.errorMessage
         )

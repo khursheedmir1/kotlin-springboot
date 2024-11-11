@@ -1,6 +1,6 @@
 package com.gfiber.useractiontracking.service
 
-import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.entity.UserActions
 import com.gfiber.useractiontracking.model.ActionDetails
 
 /**
@@ -17,7 +17,8 @@ interface UserActionService {
      * performing any other necessary operations.
      */
     suspend fun processAction(actionDetails: ActionDetails)
-  /**
+
+    /**
      * Retrieves a user action by its unique identifier.
      *
      * @param actionId The unique identifier of the action to retrieve.
@@ -25,6 +26,6 @@ interface UserActionService {
      * @throws IllegalArgumentException if the actionId is blank or invalid.
      * @throws RuntimeException if there's an error during retrieval.
      */
-    suspend fun getAction(actionId: String): UserAction?
+    suspend fun getAction(actionId: String): UserActions?
 
 }

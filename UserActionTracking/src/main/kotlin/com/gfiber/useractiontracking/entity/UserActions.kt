@@ -13,7 +13,7 @@ import javax.validation.constraints.Size
  */
  
 @Table(name = "UserActions")
-data class UserAction(
+data class UserActions(
     /**
      * Unique identifier for the action.
      */
@@ -83,7 +83,7 @@ data class UserAction(
      * Additional data associated with the action.
      */
     @Column(name = "selectionData")
-    val selectionData: Map<String, Any>?,
+    var selectionData: String?,
 
     /**
      * Error code, if an error occurred during the action.

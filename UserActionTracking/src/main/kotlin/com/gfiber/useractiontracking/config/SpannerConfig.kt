@@ -5,12 +5,15 @@ import com.google.cloud.spanner.Spanner
 import com.google.cloud.spanner.SpannerOptions
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 
 /**
  * Configuration class for Google Cloud Spanner.
  * This class sets up the necessary beans for interacting with Spanner.
  */
+@ComponentScan
 @EnableConfigurationProperties(SpannerProperties::class)
+@ComponentScan(basePackages = ["com.gfiber.useractiontracking"])
 class SpannerConfig(private val properties: SpannerProperties) {
 
     /**
@@ -39,7 +42,6 @@ class SpannerConfig(private val properties: SpannerProperties) {
         require(properties.projectId.isNotBlank()) { "Project ID must not be blank" }
         require(properties.instanceId.isNotBlank()) { "Instance ID must not be blank" }
         require(properties.databaseId.isNotBlank()) { "Database ID must not be blank" }
-        
         return DatabaseId.of(
             properties.projectId,
             properties.instanceId,

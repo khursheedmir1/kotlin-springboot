@@ -1,10 +1,11 @@
 package com.gfiber.useractiontracking
 
 import com.gfiber.useractiontracking.config.SpannerProperties
-import com.gfiber.useractiontracking.entity.UserAction
+import com.gfiber.useractiontracking.entity.UserActions
 import com.gfiber.useractiontracking.model.ActionDetails
 import com.gfiber.useractiontracking.repository.UserActionRepository
 import com.gfiber.useractiontracking.service.impl.UserActionServiceImpl
+import com.gfiber.useractiontracking.util.toSelectionData
 import com.google.cloud.Timestamp
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -24,7 +25,7 @@ import java.util.Optional
 
 @ExtendWith(MockitoExtension::class)
 @DisplayName("UserActionService Tests")
-class UserActionServiceTest {
+class UserActionsServiceTest {
 
     @Mock
     private lateinit var repository: UserActionRepository
@@ -34,7 +35,7 @@ class UserActionServiceTest {
 
     private lateinit var userActionService: UserActionServiceImpl
     private lateinit var testActionDetails: ActionDetails
-    private lateinit var testUserAction: UserAction
+    private lateinit var testUserActions: UserActions
 
     @BeforeEach
     fun setup(): Unit {
@@ -51,12 +52,12 @@ class UserActionServiceTest {
             timestamp = timestamp,
             actionType = "TEST_ACTION",
             currentStep = "TEST_STEP",
-            selectionData = mapOf("key" to "value"),
+            selectionData = mapOf(),
             errorCode = "",
             errorMessage = ""
         )
 
-        testUserAction = UserAction(
+        testUserActions = UserActions(
             actionId = "test-action-id",
             userId = testActionDetails.userId,
             sessionId = testActionDetails.sessionId,
@@ -66,7 +67,7 @@ class UserActionServiceTest {
             timestamp = testActionDetails.timestamp,
             actionType = testActionDetails.actionType,
             currentStep = testActionDetails.currentStep,
-            selectionData = testActionDetails.selectionData,
+            selectionData = testActionDetails.selectionData.toSelectionData(),
             errorCode = testActionDetails.errorCode,
             errorMessage = testActionDetails.errorMessage
         )
@@ -78,7 +79,7 @@ class UserActionServiceTest {
         // Given
         val featureFlag = SpannerProperties.FeatureFlag(enableSpannerIntegration = true)
         `when`(properties.featureFlag).thenReturn(featureFlag)
-        `when`(repository.save(any())).thenReturn(testUserAction)
+        `when`(repository.save(any())).thenReturn(testUserActions)
 
         // When
         userActionService.processAction(testActionDetails)
@@ -107,14 +108,14 @@ class UserActionServiceTest {
         // Given
         val featureFlag = SpannerProperties.FeatureFlag(enableSpannerIntegration = true)
         `when`(properties.featureFlag).thenReturn(featureFlag)
-        `when`(repository.findById(testUserAction.actionId)).thenReturn(Optional.of(testUserAction))
+        `when`(repository.findById(testUserActions.actionId)).thenReturn(Optional.of(testUserActions))
 
         // When
-        val result = userActionService.getAction(testUserAction.actionId)
+        val result = userActionService.getAction(testUserActions.actionId)
 
         // Then
         assertNotNull(result)
-        assertEquals(testUserAction, result)
+        assertEquals(testUserActions, result)
     }
 
     @Test

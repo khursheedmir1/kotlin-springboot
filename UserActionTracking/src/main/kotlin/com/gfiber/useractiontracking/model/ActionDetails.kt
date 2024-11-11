@@ -16,7 +16,7 @@ data class ActionDetails(
     val timestamp: Timestamp,
     val actionType: String,
     val currentStep: String?,
-    val selectionData: Map<String, Any>?,
+    val selectionData: Map<String,Any>?,
     val errorCode: String?,
     val errorMessage: String?
 )
