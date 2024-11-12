@@ -41,7 +41,6 @@ class UserActionServiceImpl(
         if (properties.featureFlag.enableSpannerIntegration) {
             val action = buildUserAction(actionDetails)
             try {
-                println("tableName:::${action}")
                 repository.save(action)
                 logger.info("Successfully saved action: actionId=${action.actionId}, userId=${action.userId}, traceId=${action.traceId}")
             } catch (e: Exception) {
