@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
-@ComponentScan(basePackages = ["com.gfiber.useractiontracking"])
 @SpringBootApplication(scanBasePackages = ["com.gfiber.useractiontracking"], exclude = [DataSourceAutoConfiguration::class])
+@ComponentScan(basePackages = ["com.gfiber.useractionevent","com.gfiber.useractiontracking"])
 @EnableSpannerRepositories("com.gfiber.useractiontracking")
 class UserActionEventApplication
 

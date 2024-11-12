@@ -76,24 +76,28 @@ class UserActionServiceImpl(
         }
     }
 
+    override suspend fun testProcessAction() = withContext(coroutineContext) {
+        val actionDetails = ActionDetails(
+            userId = "test-user-id",
+            sessionId = "test-session-id",
+            traceId = "test-trace-5",
+            globalAddressId = "test-global-address-id",
+            ipAddress = "127.0.0.1",
+            timestamp = Timestamp.now(),
+            actionType = "TEST_ACTION",
+            currentStep = "TEST_STEP",
+            selectionData = mapOf("key1" to "value1"),
+            errorCode = "",
+            errorMessage = ""
+        )
+        println("testProcessAction:::actionDetails = ${actionDetails}")
+        processAction(actionDetails)
+    }
+
     init {
-        GlobalScope.launch(Dispatchers.IO) {
-            val actionDetails = ActionDetails(
-                userId = "test-user-id",
-                sessionId = "test-session-id",
-                traceId = "test-trace-2",
-                globalAddressId = "test-global-address-id",
-                ipAddress = "127.0.0.1",
-                timestamp = Timestamp.now(),
-                actionType = "TEST_ACTION",
-                currentStep = "TEST_STEP",
-                selectionData = mapOf("key1" to "value1"),
-                errorCode = "",
-                errorMessage = ""
-            )
-            println("init:::actionDetails = ${actionDetails}")
-//            processAction(actionDetails)
-        }
+//        GlobalScope.launch(Dispatchers.IO) {
+//            testProcessAction()
+//        }
     }
 
     /**

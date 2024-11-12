@@ -2,10 +2,9 @@ package com.gfiber.useractiontracking.util
 
 import com.fasterxml.jackson.databind.ObjectMapper
 
-
 private val objectMapper = ObjectMapper()
 
-fun Map<String, Any>?.toSelectionData(): String? {
+fun Map<String, Any>?.toSelectionData(): String {
     return this?.let { objectMapper.writeValueAsString(it) }.orEmpty()
 }
 

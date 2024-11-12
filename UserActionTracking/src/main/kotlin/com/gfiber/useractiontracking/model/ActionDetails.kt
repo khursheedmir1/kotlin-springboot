@@ -6,7 +6,7 @@ import com.google.cloud.Timestamp
  * Represents the details of a user action in the system.
  * This data class is used to encapsulate action-related information.
  */
- 
+
 data class ActionDetails(
     val userId: String?,
     val sessionId: String?,
