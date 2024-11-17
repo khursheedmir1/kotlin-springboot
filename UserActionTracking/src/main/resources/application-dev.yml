@@ -1,7 +1,0 @@
-spanner:
-  project-id: bustling-kayak-438602-m8
-  instance-id: useractions-track
-  database-id: projects/bustling-kayak-438602-m8/instance/useractions-track/databases/useractiontracking
-  feature-flag:
-    enable-spanner-integration: true
-

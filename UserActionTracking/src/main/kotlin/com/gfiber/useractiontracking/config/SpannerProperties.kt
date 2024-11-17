@@ -1,5 +1,6 @@
 package com.gfiber.useractiontracking.config
 
+import com.google.cloud.spring.data.spanner.repository.config.EnableSpannerRepositories
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank
 @Component
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "spanner")
+@EnableSpannerRepositories("com.gfiber.useractiontracking")
 @Validated
 data class SpannerProperties(
     /**

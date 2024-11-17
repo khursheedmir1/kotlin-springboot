@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     id("org.springframework.boot")
     id("io.spring.dependency-management")
+    id("maven-publish")
 }
 
 group = "com.gfiber"
@@ -46,6 +47,39 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenKotlin") {
+            from(components["java"])  // This assumes you're building a Java/Kotlin project
+
+            groupId = "com.gfiber"   // Change this to your group ID
+            artifactId = "UserActionTracking"   // Change this to your artifact ID
+            version = "0.0.1-SNAPSHOT"         // Change this to your version
+        }
+    }
+
+    repositories {
+        mavenLocal()  // Publishes to the local Maven repository
+    }
+}
+
+
+tasks.register<Jar>("fatJar") {
+    archiveBaseName.set("my-fat-jar")
+    archiveVersion.set("1.0.0")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // Handle duplicates
+    // Include compiled classes and runtime dependencies
+//    from(sourceSets.main.get().output)
+//    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+
+    from(sourceSets.main.get().output)
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    {
+        exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
+    }
+}
+
 kotlin {
     jvmToolchain(17)
 }

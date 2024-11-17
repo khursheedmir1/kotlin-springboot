@@ -1,6 +1,0 @@
-spanner:
-  project-id: prod-project-id
-  instance-id: prod-instance-id
-  database-id: prod-database-id
-  feature-flag:
-    enable-spanner-integration: true
