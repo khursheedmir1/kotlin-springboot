@@ -104,3 +104,74 @@ Write tests for a Calculator class with methods like add, subtract, multiply, an
 Output the tests in the specified programming language, formatted for the respective testing framework, with detailed comments explaining each test case.
 
 ===================================================================================================
+
+
+Ultimate Unit Testing Prompt:
+Write comprehensive, high-quality, and maintainable unit test cases for the [ClassName] class using the specified programming language and testing framework. Adhere to the following best practices:
+
+1. Test Coverage
+Functional Testing:
+
+Write positive test cases covering all public methods with valid input combinations.
+Include negative test cases for invalid inputs (e.g., null, undefined, empty strings, unsupported types, or out-of-range values).
+Test behavior for typical, edge, and special cases.
+Boundary Value Testing:
+
+Validate inputs at and near the boundaries of valid ranges (e.g., min/max values, empty/non-empty collections, zero values, and large inputs).
+Error Handling:
+
+Ensure proper exceptions are thrown with meaningful error messages for invalid inputs and unexpected conditions.
+Validate exception types and messages.
+State Testing (if applicable):
+
+Test object state changes after method invocations.
+Integration Testing (if applicable for React components):
+
+Verify rendering and interaction of components.
+Validate prop passing, state updates, and integration with hooks or context.
+2. Test Implementation
+Test Structure:
+
+Follow the Arrange-Act-Assert (AAA) or Given-When-Then (GWT) pattern for clarity.
+Use descriptive, action-oriented method names (e.g., shouldReturnSumForValidInputs()).
+Keep tests short, isolated, and focused.
+Framework-Specific Guidance:
+
+For Java, use JUnit or TestNG with appropriate annotations and lifecycle methods.
+For Python, use pytest or unittest, leveraging fixtures and parameterized tests.
+For TypeScript, use Jest or Mocha/Chai for unit testing.
+For React.js, use Jest and React Testing Library for component and integration tests.
+Mocking and Stubbing:
+
+Use mocks/stubs for external dependencies (e.g., APIs, databases).
+Focus on testing the unit in isolation.
+3. Best Practices
+Ensure tests are independent and can run in any order.
+Use setup and teardown methods for reusable test fixtures.
+Leverage parameterized tests for multiple input combinations.
+Write regression tests for bug fixes to prevent future issues.
+4. Assertions
+Use precise assertions that clearly express the expected outcome.
+For floating-point operations, include a tolerance (delta) for comparisons.
+Validate returned values, state changes, and method calls on mocked dependencies.
+5. Performance and Security
+Performance Testing:
+
+Measure execution time for performance-critical methods with large or complex inputs.
+Ensure performance remains within acceptable thresholds.
+Security Testing:
+
+Validate against vulnerabilities like SQL injection, XSS, and buffer overflows.
+Test input validation and sanitization for web or database-related methods.
+6. Documentation
+Provide clear and concise comments for each test case, describing the test purpose, inputs, and expected outputs.
+Document any specific setup or unusual conditions.
+7. Code Coverage
+Aim for 100% code coverage with meaningful tests for branches and conditions.
+Prioritize quality over quantity—focus on real-world scenarios over artificial cases.
+Example Request:
+Write test cases for a Calculator class with methods like add, subtract, multiply, and divide, ensuring all aspects above are covered. Include detailed comments explaining each test case.
+
+Output the test cases in the specified programming language using the chosen testing framework. Ensure the tests are readable, reusable, and adhere to best practices.
+
+===============================================================================================================
