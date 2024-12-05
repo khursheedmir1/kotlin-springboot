@@ -1,8 +1,35 @@
-Create a TypeScript React application for a shopping cart system. The application should:
-Display a list of products fetched from a JSON file
-Allow users to add and remove items from the cart
-Implement a cart context using React's Context API
-Use a custom hook to manage cart state and local storage
-Include a header component showing the total items and price
-Create a footer component with a view cart option
-Style the application using a UI library like Chakra UI
+Design and develop a comprehensive e-commerce website that adheres to industry standards exemplified by Amazon.com. The project should incorporate the following key elements:
+User Interface and Experience
+Implement a clean, intuitive design with a well-placed search bar at the top of every page11.
+Create a responsive layout that adapts seamlessly to various devices and screen sizes8.
+Design clear and concise product categories for easy navigation11.
+Develop short, keyword-rich product titles and descriptions11.
+Functionality
+Build a robust user authentication system with secure registration and login processes10.
+Implement a powerful search functionality with auto-complete and filtering options10.
+Create a shopping cart system that allows users to add, remove, and modify items10.
+Develop a secure checkout process with multiple payment gateway integrations10.
+Include an order tracking system for customers to monitor their purchases10.
+Backend and Data Management
+Design a scalable database structure to efficiently manage products, users, and orders10.
+Implement an admin dashboard for inventory management, order processing, and user management10.
+Create APIs for seamless integration with third-party services and potential mobile applications8.
+Security and Performance
+Implement industry-standard security measures, including SSL encryption and secure payment processing8.
+Optimize website performance for fast loading times and smooth user experience8.
+Incorporate security seals and trust badges to build customer confidence13.
+Project Structure and Best Practices
+Utilize a modular architecture to enhance maintainability and scalability4.
+Implement the principle of separation of concerns by organizing code into distinct components or layers5.
+Apply the DRY (Don't Repeat Yourself) principle to minimize code duplication and improve maintainability4.
+Use meaningful names for variables, functions, and modules to enhance code readability4.
+Implement proper error handling and logging mechanisms throughout the application5.
+Create comprehensive documentation for the codebase, including inline comments and external documentation5.
+Testing and Quality Assurance
+Implement unit tests for individual components and integration tests for system-wide functionality5.
+Set up continuous integration and deployment pipelines for automated testing and deployment5.
+Additional Features
+Implement a product review and rating system10.
+Create a personalized recommendation engine based on user browsing and purchase history8.
+Develop a customer support system with FAQ pages and easy access to further assistance11.
+Ensure that the project follows best practices for code organization, version control, and documentation to facilitate long-term maintenance and scalability. The final product should be a high-quality, user-friendly e-commerce platform that meets industry standards and provides a seamless shopping experience for customers
