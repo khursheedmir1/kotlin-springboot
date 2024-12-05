@@ -176,3 +176,43 @@ Output the test cases in the specified programming language using the chosen tes
 
 ===============================================================================================================
 Create a Flask API for managing a to-do list. The API should have endpoints to add a new task, retrieve all tasks, update a task's status, and delete a task. Each task should have an ID, a description, and a status (completed or not completed). Implement basic error handling for Invalid requests.
+
+===================================================================================================
+
+Amazon Q is a powerful generative AI assistant developed by Amazon Web Services (AWS) that transforms how work is done across organizations. It offers a range of capabilities designed to enhance productivity and innovation for both developers and business users.
+Key Features
+For Developers:
+Amazon Q Developer assists with various tasks throughout the software development lifecycle, including:
+Coding and code completion
+Testing and debugging
+Upgrading and troubleshooting
+Security scanning
+Generating documentation
+Conducting code reviews
+Creating unit tests
+For Business Users:
+Amazon Q Business enables:
+Tailored conversations
+Problem-solving
+Content generation
+Task streamlining
+Data-driven decision making
+Integration and Connectivity
+Amazon Q seamlessly integrates with over 40 commonly used business tools and enterprise systems, including:
+Wikis and intranets
+Atlassian suite
+Gmail and Microsoft Exchange
+Salesforce and ServiceNow
+Slack
+Amazon S3
+This integration allows users to access and analyze data from various sources within their organization, making it easier to find information and gain insights.
+Key Components
+Amazon Q Developer: Focuses on enhancing the developer experience throughout the software development lifecycle3.
+Amazon Q Business: A generative AI-powered assistant for answering questions, providing summaries, generating content, and completing tasks based on enterprise data2.
+Amazon Q Apps: Enables employees to create generative AI-powered applications without coding experience, streamlining and automating daily work2.
+Benefits
+Increased productivity (potentially up to 80% improvement)
+Enhanced decision-making capabilities
+Streamlined software development processes
+Improved data analysis and business intelligence
+Secure and privacy-focused design
