@@ -175,3 +175,4 @@ Write test cases for a Calculator class with methods like add, subtract, multipl
 Output the test cases in the specified programming language using the chosen testing framework. Ensure the tests are readable, reusable, and adhere to best practices.
 
 ===============================================================================================================
+Create a Flask API for managing a to-do list. The API should have endpoints to add a new task, retrieve all tasks, update a task's status, and delete a task. Each task should have an ID, a description, and a status (completed or not completed). Implement basic error handling for Invalid requests.
