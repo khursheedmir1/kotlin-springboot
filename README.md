@@ -1,218 +1,48 @@
-Write comprehensive and high-quality unit test cases for the given class, considering the following key aspects. Use modern industry-standard best practices and ensure tests are readable, maintainable, and reusable.
+# LaunchDarkly Full Demo (Node + React)
 
-Functional Testing:
+This project shows how to use LaunchDarkly for:
+1. Basic feature toggles
+2. Percentage rollouts
+3. Experiments with conversion tracking
 
-Write positive test cases covering various valid input scenarios for all methods.
-Write negative test cases for invalid input values (e.g., null, empty strings, unsupported types, or out-of-range numbers).
-Validate behavior under typical and edge-case scenarios.
-Boundary Value Testing:
+## Setup
 
-Test inputs at the boundaries of valid ranges (e.g., min/max values for numbers, empty/non-empty collections).
-Include edge cases like zero, empty strings, and large numbers to ensure robustness.
-Error Handling Testing:
+### Backend
+```bash
+cd backend
+npm install
+```
+Create `.env`:
+```
+LD_SDK_KEY=YOUR_SERVER_SDK_KEY
+```
+Run:
+```bash
+npm start
+```
 
-Validate error handling for invalid inputs, unexpected states, and exceptions.
-Ensure proper exceptions are thrown with meaningful error messages.
-Performance Testing:
+### Frontend
+```bash
+cd frontend
+npm install
+```
+Edit `src/App.js` → replace `YOUR_CLIENT_SIDE_ID`.
+Run:
+```bash
+npm start
+```
 
-Measure execution time for computationally intensive methods with large datasets or complex inputs.
-Ensure performance remains within acceptable thresholds.
-Security Testing (if applicable):
+## Usage
+- Create flag `new-homepage` (boolean).
+- Add percentage rollout (50/50).
+- Enable experiment with goal `homepage-conversion`.
 
-Verify against common vulnerabilities such as SQL injection, XSS, or buffer overflows (specific to web-related or database-interacting methods).
-Mocking and Stubbing:
+Backend:  
+- `GET /feature?user=alice` → flag value  
+- `POST /convert { "user": "alice" }` → conversion
 
-Mock dependencies for isolated testing of the class methods.
-Use appropriate test doubles for external API calls, database interactions, or third-party integrations.
-Test Case Description:
+Frontend:  
+- Switch between Alice and Bob → rollout difference  
+- Click "Simulate Conversion" → sends conversion event  
 
-Provide clear, concise descriptions for each test case, detailing the purpose, inputs, expected outputs, and any special conditions.
-Coding Standards:
-
-Follow naming conventions like should<Behavior> or test<Method> for test methods.
-Structure tests with Arrange-Act-Assert (AAA) or Given-When-Then (GWT) format for clarity.
-Framework-Specific Guidelines:
-
-For Java, use JUnit or TestNG, adhering to proper annotations and lifecycle methods.
-For Python, use unittest or pytest with fixtures and parameterized tests.
-For TypeScript, use Jest or Mocha/Chai for robust testing.
-For React.js, use Jest and React Testing Library, ensuring proper coverage for both unit and integration tests.
-Code Coverage:
-
-Aim for 100% coverage, including branches and conditions, to ensure the class is thoroughly tested.
-=====================================================================================================
-
-
-Write comprehensive unit test cases for the [ClassName] class, adhering to the following guidelines:
-Test Structure
-Follow the Arrange-Act-Assert (AAA) pattern for each test.
-Use descriptive, action-oriented names for test methods (e.g., shouldReturnSumWhenAddingTwoPositiveNumbers()).
-Keep tests short, focused, and easy to read.
-Use the appropriate testing framework:
-Java: JUnit
-Python: pytest
-TypeScript: Jest
-React: Jest with React Testing Library
-Test Coverage
-Functional Testing:
-Write positive test cases for all public methods with various valid input combinations.
-Include negative test cases with invalid inputs (null, undefined, empty strings, out-of-range values).
-Test edge cases (minimum/maximum values, empty collections, single-element collections).
-Boundary Value Testing:
-Test input values at and around the boundaries of valid ranges.
-Error Handling:
-Verify appropriate exceptions are thrown for invalid inputs or unexpected conditions.
-Test exception messages and types.
-State Testing:
-Verify object state changes after method calls, if applicable.
-Integration Testing (for React components):
-Test component rendering and interactions.
-Verify proper prop passing and state management.
-Best Practices
-Ensure tests are independent and can run in any order.
-Use setup and teardown methods to initialize common test fixtures and clean up resources.
-Mock external dependencies to isolate the unit under test.
-Use parameterized tests for testing multiple input combinations.
-Aim for high code coverage, but prioritize meaningful tests over 100% coverage.
-Write tests for bug fixes to prevent regressions.
-Assertions
-Use precise assertions that clearly indicate the expected outcome.
-Prefer equality assertions over boolean assertions where applicable.
-For floating-point comparisons, use appropriate delta values.
-Performance Considerations
-Keep tests fast-running (milliseconds per test).
-For performance-critical methods, use appropriate annotations or utilities to measure execution time.
-Documentation
-Provide a brief description of each test case's purpose using comments.
-Document any non-obvious test setup or assertions.
-Security Considerations (if applicable)
-Include tests for input validation and sanitization.
-Test for potential security vulnerabilities relevant to the class functionality.
-Remember to make your tests repeatable, isolated, and deterministic. Avoid logic in tests and focus on testing one scenario per test method. Ensure your test suite runs quickly to encourage frequent execution.
-For React components, include additional tests for:
-Rendering of components with different props
-User interactions (clicks, input changes, etc.)
-State updates and re-renders
-Integration with hooks and context
-Provide clear instructions on how to run the tests and any necessary setup steps.
-
-====================================================================================
-
-Example:
-Write tests for a Calculator class with methods like add, subtract, multiply, and divide, ensuring all of the above aspects are covered.
-
-Output the tests in the specified programming language, formatted for the respective testing framework, with detailed comments explaining each test case.
-
-===================================================================================================
-
-
-Ultimate Unit Testing Prompt:
-Write comprehensive, high-quality, and maintainable unit test cases for the [ClassName] class using the specified programming language and testing framework. Adhere to the following best practices:
-
-1. Test Coverage
-Functional Testing:
-
-Write positive test cases covering all public methods with valid input combinations.
-Include negative test cases for invalid inputs (e.g., null, undefined, empty strings, unsupported types, or out-of-range values).
-Test behavior for typical, edge, and special cases.
-Boundary Value Testing:
-
-Validate inputs at and near the boundaries of valid ranges (e.g., min/max values, empty/non-empty collections, zero values, and large inputs).
-Error Handling:
-
-Ensure proper exceptions are thrown with meaningful error messages for invalid inputs and unexpected conditions.
-Validate exception types and messages.
-State Testing (if applicable):
-
-Test object state changes after method invocations.
-Integration Testing (if applicable for React components):
-
-Verify rendering and interaction of components.
-Validate prop passing, state updates, and integration with hooks or context.
-2. Test Implementation
-Test Structure:
-
-Follow the Arrange-Act-Assert (AAA) or Given-When-Then (GWT) pattern for clarity.
-Use descriptive, action-oriented method names (e.g., shouldReturnSumForValidInputs()).
-Keep tests short, isolated, and focused.
-Framework-Specific Guidance:
-
-For Java, use JUnit or TestNG with appropriate annotations and lifecycle methods.
-For Python, use pytest or unittest, leveraging fixtures and parameterized tests.
-For TypeScript, use Jest or Mocha/Chai for unit testing.
-For React.js, use Jest and React Testing Library for component and integration tests.
-Mocking and Stubbing:
-
-Use mocks/stubs for external dependencies (e.g., APIs, databases).
-Focus on testing the unit in isolation.
-3. Best Practices
-Ensure tests are independent and can run in any order.
-Use setup and teardown methods for reusable test fixtures.
-Leverage parameterized tests for multiple input combinations.
-Write regression tests for bug fixes to prevent future issues.
-4. Assertions
-Use precise assertions that clearly express the expected outcome.
-For floating-point operations, include a tolerance (delta) for comparisons.
-Validate returned values, state changes, and method calls on mocked dependencies.
-5. Performance and Security
-Performance Testing:
-
-Measure execution time for performance-critical methods with large or complex inputs.
-Ensure performance remains within acceptable thresholds.
-Security Testing:
-
-Validate against vulnerabilities like SQL injection, XSS, and buffer overflows.
-Test input validation and sanitization for web or database-related methods.
-6. Documentation
-Provide clear and concise comments for each test case, describing the test purpose, inputs, and expected outputs.
-Document any specific setup or unusual conditions.
-7. Code Coverage
-Aim for 100% code coverage with meaningful tests for branches and conditions.
-Prioritize quality over quantity—focus on real-world scenarios over artificial cases.
-Example Request:
-Write test cases for a Calculator class with methods like add, subtract, multiply, and divide, ensuring all aspects above are covered. Include detailed comments explaining each test case.
-
-Output the test cases in the specified programming language using the chosen testing framework. Ensure the tests are readable, reusable, and adhere to best practices.
-
-===============================================================================================================
-Create a Flask API for managing a to-do list. The API should have endpoints to add a new task, retrieve all tasks, update a task's status, and delete a task. Each task should have an ID, a description, and a status (completed or not completed). Implement basic error handling for Invalid requests.
-
-===================================================================================================
-
-Amazon Q is a powerful generative AI assistant developed by Amazon Web Services (AWS) that transforms how work is done across organizations. It offers a range of capabilities designed to enhance productivity and innovation for both developers and business users.
-Key Features
-For Developers:
-Amazon Q Developer assists with various tasks throughout the software development lifecycle, including:
-Coding and code completion
-Testing and debugging
-Upgrading and troubleshooting
-Security scanning
-Generating documentation
-Conducting code reviews
-Creating unit tests
-For Business Users:
-Amazon Q Business enables:
-Tailored conversations
-Problem-solving
-Content generation
-Task streamlining
-Data-driven decision making
-Integration and Connectivity
-Amazon Q seamlessly integrates with over 40 commonly used business tools and enterprise systems, including:
-Wikis and intranets
-Atlassian suite
-Gmail and Microsoft Exchange
-Salesforce and ServiceNow
-Slack
-Amazon S3
-This integration allows users to access and analyze data from various sources within their organization, making it easier to find information and gain insights.
-Key Components
-Amazon Q Developer: Focuses on enhancing the developer experience throughout the software development lifecycle3.
-Amazon Q Business: A generative AI-powered assistant for answering questions, providing summaries, generating content, and completing tasks based on enterprise data2.
-Amazon Q Apps: Enables employees to create generative AI-powered applications without coding experience, streamlining and automating daily work2.
-Benefits
-Increased productivity (potentially up to 80% improvement)
-Enhanced decision-making capabilities
-Streamlined software development processes
-Improved data analysis and business intelligence
-Secure and privacy-focused design
+Check Experiments in LD dashboard to compare conversion rates.
